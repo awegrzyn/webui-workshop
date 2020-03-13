@@ -3,14 +3,15 @@ import {h, iconHome, iconDataTransferDownload} from '/js/src/index.js';
 export default (model) =>
   [
     h('', 'About page content'),
-    createButtonGroup(model)
+    createButtonGroup(model),
+    infoPanel(model),
   ];
 
-  /**
-   * Create a group button
-   * @param {Object} model
-   * @return {vnode}
-   */
+/**
+ * Create a group button
+ * @param {Object} model
+ * @return {vnode}
+ */
 const createButtonGroup = (model) =>
   h('.w-25', [
     h('.btn-group', [
@@ -21,7 +22,10 @@ const createButtonGroup = (model) =>
       }, ['Home', ' ', iconHome()]
       ),
       h('button.btn.btn-primary', {
-        onclick: () => console.log('Get me some data about the project')
+        onclick: () => model.about.getData()
       }, iconDataTransferDownload())
     ])
-  ])
+  ]);
+
+const infoPanel = (model) => 
+  h('label.danger', model.about.requestedTimes)

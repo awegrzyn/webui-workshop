@@ -1,5 +1,6 @@
 import {Observable, QueryRouter, Loader, sessionService} from '/js/src/index.js';
 import Home from './home/Home.js';
+import About from './about/About.js';
 
 /**
  * Root of model tree
@@ -25,6 +26,9 @@ export default class Model extends Observable {
 
     this.home = new Home();
     this.home.bubbleTo(this);
+
+    this.about = new About();
+    this.about.bubbleTo(this);
 
     this.handleLocationChange(); // Init first page
   }
