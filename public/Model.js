@@ -31,6 +31,10 @@ export default class Model extends Observable {
   handleLocationChange() {
     switch (this.router.params.page) {
       case 'home':
+        // get this ata
+        break;
+      case 'about':
+        // get this ata
         break;
       default:
         this.router.go('?page=home');
