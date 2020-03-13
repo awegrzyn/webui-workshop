@@ -5,7 +5,12 @@ export default (model) =>
     h('', 'About page content'),
     createButtonGroup(model),
     infoPanel(model),
-    dataTable(model.about.data)
+    model.about.data.match({
+      NotAsked: () => h('.warning', 'Data? What Data?'),
+      Loading: () => h('', 'Loading'),
+      Success: (data) => dataTable(data),
+      Failure: (error) => h('.danger', JSON.stringify(error)),
+    })
   ];
 
 /**

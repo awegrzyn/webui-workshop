@@ -13,5 +13,6 @@ http.get('/getData', (req, res) => {
     version: '1.0.0',
     author: 'batman'
   };
-  res.status(200).json(data);
+  // res.status(200).json(data);
+  res.status(500).json({message: 'There is a problem'});
 });

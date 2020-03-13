@@ -1,4 +1,4 @@
-import {Observable} from '/js/src/index.js';
+import {Observable, RemoteData} from '/js/src/index.js';
 
 export default class About extends Observable {
   
@@ -6,7 +6,7 @@ export default class About extends Observable {
     super();
     this.model = model;
 
-    this.data = {};
+    this.data = RemoteData.notAsked();
     this.requestedTimes = 0;
   }
 
@@ -14,9 +14,16 @@ export default class About extends Observable {
    * @return {JSON}
    */
   async requestData() {
+    this.data = RemoteData.loading();
+    this.notify();
+
     const {result, ok} = await this.model.loader.get('/api/getData');
     
-    this.data = result;
+    if (!ok) {
+      this.data = RemoteData.failure(result);
+    } else {
+      this.data = RemoteData.success(result);
+    }
     this.requestedTimes++;
     this.notify();
   }
