@@ -6,6 +6,11 @@ export default (model) =>
     createButtonGroup(model)
   ];
 
+  /**
+   * Create a group button
+   * @param {Object} model
+   * @return {vnode}
+   */
 const createButtonGroup = (model) =>
   h('.w-25', [
     h('.btn-group', [
