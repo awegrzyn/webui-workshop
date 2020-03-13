@@ -24,10 +24,10 @@ export default class Model extends Observable {
     this.router.observe(this.handleLocationChange.bind(this));
     this.router.bubbleTo(this);
 
-    this.home = new Home();
+    this.home = new Home(this);
     this.home.bubbleTo(this);
 
-    this.about = new About();
+    this.about = new About(this);
     this.about.bubbleTo(this);
 
     this.handleLocationChange(); // Init first page

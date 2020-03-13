@@ -4,6 +4,7 @@ export default class About extends Observable {
   
   constructor(model) {
     super();
+    this.model = model;
 
     this.data = {};
     this.requestedTimes = 0;
@@ -12,12 +13,10 @@ export default class About extends Observable {
   /**
    * @return {JSON}
    */
-  requestData() {
-    this.data = {
-      name: 'webui',
-      version: '1.0.0',
-      author: 'batman'
-    };
+  async requestData() {
+    const {result, ok} = await this.model.loader.get('/api/getData');
+    
+    this.data = result;
     this.requestedTimes++;
     this.notify();
   }

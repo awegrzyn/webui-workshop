@@ -23,7 +23,7 @@ const createButtonGroup = (model) =>
       }, ['Home', ' ', iconHome()]
       ),
       h('button.btn.btn-primary', {
-        onclick: () => model.about.getData()
+        onclick: () => model.about.requestData()
       }, iconDataTransferDownload())
     ])
   ]);
