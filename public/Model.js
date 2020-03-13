@@ -1,4 +1,4 @@
-import {Observable, QueryRouter, Loader, sessionService} from '/js/src/index.js';
+import {Observable, QueryRouter, Loader, sessionService, WebSocketClient} from '/js/src/index.js';
 import Home from './home/Home.js';
 import About from './about/About.js';
 
@@ -30,7 +30,24 @@ export default class Model extends Observable {
     this.about = new About(this);
     this.about.bubbleTo(this);
 
+    this.ws = new WebSocketClient();
+    this.ws.addListener('command', this.handleWSCommand.bind(this));
+    this.random = '';
+    
     this.handleLocationChange(); // Init first page
+  }
+
+  /**
+  * Delegates sub-model actions depending on incoming command from server
+  * @param {WebSocketMessage} message
+  */
+  handleWSCommand(message) {
+    if (message.command === 'random') {
+      console.log(message);
+      this.random = message.payload;
+      this.notify();
+      return;
+    }
   }
 
   /**

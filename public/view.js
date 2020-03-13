@@ -22,7 +22,8 @@ export default (model) => [
 const header = (model) =>
   h('.p2.shadow-level2.level2.danger', {
     style: 'display: flex; justify-content: center'
-  }, `Welcome to your ${model.router.params.page}`);
+  }, `Welcome to your ${model.router.params.page}
+  Your lucky number: ${model.random}`);
 
 /**
  * Page content
