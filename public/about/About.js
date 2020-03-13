@@ -12,7 +12,7 @@ export default class About extends Observable {
   /**
    * @return {JSON}
    */
-  getData() {
+  requestData() {
     this.data = {
       name: 'webui',
       version: '1.0.0',
@@ -20,6 +20,5 @@ export default class About extends Observable {
     };
     this.requestedTimes++;
     this.notify();
-    return this.data;
   }
 }
